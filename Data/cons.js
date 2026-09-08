@@ -1,0 +1,108 @@
+// ====== قاعدة البيانات  ======
+const database = [
+    {
+        id: "luhaidan",
+        name: "محمد اللحيدان",
+        image: "Data/محمد اللحيدان/shiekh.png", 
+        surahs: [
+            {
+                id: "alqariah",
+                name: "سورة القارعة",
+                audioUrl: "https://server8.mp3quran.net/lhdan/101.mp3",
+                jsFile: "Data/محمد اللحيدان/القارعة/القارعة.js",
+                image: "Data/محمد اللحيدان/القارعة/القارعة.png"
+            },
+            {
+                id: "attakathur",
+                name: "سورة التكاثر",
+                audioUrl: "https://server8.mp3quran.net/lhdan/102.mp3",
+                jsFile: "Data/محمد اللحيدان/التكاثر/التكاثر.js",
+                image: "Data/محمد اللحيدان/التكاثر/التكاثر.png"
+            },
+            {
+                id: "alasr",
+                name: "سورة العصر",
+                audioUrl: "https://server8.mp3quran.net/lhdan/103.mp3",
+                jsFile: "Data/محمد اللحيدان/العصر/العصر.js",
+                image: "Data/محمد اللحيدان/العصر/العصر.png"
+            },
+            {
+                id: "alhumazah",
+                name: "سورة الهمزة",
+                audioUrl: "https://server8.mp3quran.net/lhdan/104.mp3",
+                jsFile: "Data/محمد اللحيدان/الهمزة/الهمزة.js",
+                image: "Data/محمد اللحيدان/الهمزة/الهمزة.png"
+            },
+            {
+                id: "alfeel",
+                name: "سورة الفيل",
+                audioUrl: "https://server8.mp3quran.net/lhdan/105.mp3",
+                jsFile: "Data/محمد اللحيدان/الفيل/الفيل.js",
+                image: "Data/محمد اللحيدان/الفيل/الفيل.png"
+            },
+            {
+                id: "quraysh",
+                name: "سورة قريش",
+                audioUrl: "https://server8.mp3quran.net/lhdan/106.mp3",
+                jsFile: "Data/محمد اللحيدان/قريش/قريش.js",
+                image: "Data/محمد اللحيدان/قريش/قريش.png"
+            },
+            {
+                id: "almaun",
+                name: "سورة الماعون",
+                audioUrl: "https://server8.mp3quran.net/lhdan/107.mp3",
+                jsFile: "Data/محمد اللحيدان/الماعون/الماعون.js",
+                image: "Data/محمد اللحيدان/الماعون/الماعون.png"
+            },
+            {
+                id: "alkawthar",
+                name: "سورة الكوثر",
+                audioUrl: "https://server8.mp3quran.net/lhdan/108.mp3",
+                jsFile: "Data/محمد اللحيدان/الكوثر/الكوثر.js",
+                image: "Data/محمد اللحيدان/الكوثر/الكوثر.png"
+            },
+            {
+                id: "alkafirun",
+                name: "سورة الكافرون",
+                audioUrl: "https://server8.mp3quran.net/lhdan/109.mp3",
+                jsFile: "Data/محمد اللحيدان/الكافرون/الكافرون.js",
+                image: "Data/محمد اللحيدان/الكافرون/الكافرون.png"
+            },
+            {
+                id: "annasr",
+                name: "سورة النصر",
+                audioUrl: "https://server8.mp3quran.net/lhdan/110.mp3",
+                jsFile: "Data/محمد اللحيدان/النصر/النصر.js",
+                image: "Data/محمد اللحيدان/النصر/النصر.png"
+            },
+            {
+                id: "almasad",
+                name: "سورة المسد",
+                audioUrl: "https://server8.mp3quran.net/lhdan/111.mp3",
+                jsFile: "Data/محمد اللحيدان/المسد/المسد.js",
+                image: "Data/محمد اللحيدان/المسد/المسد.png"
+            },
+            {
+                id: "alikhlas",
+                name: "سورة الإخلاص",
+                audioUrl: "https://server8.mp3quran.net/lhdan/112.mp3",
+                jsFile: "Data/محمد اللحيدان/الإخلاص/الإخلاص.js",
+                image: "Data/محمد اللحيدان/الإخلاص/الإخلاص.png"
+            },
+            {
+                id: "alfalaq",
+                name: "سورة الفلق",
+                audioUrl: "https://server8.mp3quran.net/lhdan/113.mp3",
+                jsFile: "Data/محمد اللحيدان/الفلق/الفلق.js",
+                image: "Data/محمد اللحيدان/الفلق/الفلق.png"
+            },
+            {
+                id: "alnas",
+                name: "سورة الناس",
+                audioUrl: "https://server8.mp3quran.net/lhdan/114.mp3",
+                jsFile: "Data/محمد اللحيدان/الناس/الناس.js",
+                image: "Data/محمد اللحيدان/الناس/الناس.png"
+            }
+        ]
+    }
+        ];
