@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سورة الناس- محمد اللحيدان</title>
-    <link rel="icon" href="الناس.png" type="image/png">
+    <title>موقع القرآن الكريم</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Aref+Ruqaa&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="icon" href="https://github.com/academicsociety2/Al-Maher_Quran/blob/main/Data/icon/icon-512.png?raw=true" type="image/png">
     <meta property="og:title" content="صل ع النبي">
-    <meta property="og:description" content=" سورة الناس - الشيخ محمد اللحيدان">
-    <meta property="og:image" content="https://github.com/academicsociety2/alnas-muhammedelohidan/blob/main/%D8%A7%D9%84%D9%86%D8%A7%D8%B3.jpg?raw=true">
-    <meta property="og:url" content="https://academicsociety2.github.io/alnas-muhammedelohidan/">
+    <meta property="og:description" content=" القرآن الكريم">
+    <meta property="og:image" content="https://github.com/academicsociety2/Al-Maher_Quran/blob/main/Data/icon/icon-512.png?raw=true">
+    <meta property="og:url" content="https://academicsociety2.github.io/Al-Maher_Quran/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="صل ع النبي">
-    <meta name="twitter:description" content=" سورة الناس - الشيخ محمد اللحيدان">
-    <meta name="twitter:image" content="https://github.com/academicsociety2/alnas-muhammedelohidan/blob/main/%D8%A7%D9%84%D9%86%D8%A7%D8%B3.jpg?raw=true">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Aref+Ruqaa&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    
+    <meta name="twitter:description" content=" القرآن الكريم">
+    <meta name="twitter:image" content="https://github.com/academicsociety2/Al-Maher_Quran/blob/main/Data/icon/icon-512.png?raw=true">
     <style>
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #0f1e16; }
@@ -29,413 +29,111 @@
             color: #2c2c2c; 
             font-family: 'Amiri Quran', serif;
             margin: 0; 
-            padding: 40px 20px 120px 20px; 
+            padding: 20px; 
             display: flex; 
-            justify-content: center; 
-            align-items: flex-start; 
+            flex-direction: column;
+            align-items: center; 
             min-height: 100vh;
             box-sizing: border-box;
         }
+        .view-section { display: none; width: 100%; max-width: 900px; flex-direction: column; align-items: center; gap: 20px; }
+        .view-section.active { display: flex; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .main-wrapper {
-            display: flex;
-            flex-direction: column; 
-            gap: 30px;
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
             width: 100%;
-            max-width: 900px;
-            justify-content: center;
-            align-items: center;
+            margin-top: 20px;
         }
-
-        .image-box img {
-            width: 320px;
-            max-width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            border: 3px solid #b7950b;
-        }
-        
-        .mushaf-container {
-            background-color: #fdf7e3; 
-            width: 100%;
-            min-width: 350px;
-            border-radius: 8px;
-            box-shadow: 
-                0 20px 50px rgba(0,0,0,0.8), 
-                inset 0 0 80px rgba(183, 149, 11, 0.15),
-                -8px 0 15px rgba(0,0,0,0.2);
-            position: relative;
-        }
-        
-        .mushaf-container::before {
-            content: '';
-            position: absolute;
-            top: 0; right: 0; bottom: 0;
-            width: 40px;
-            background: linear-gradient(to left, rgba(0,0,0,0.15) 0%, transparent 100%);
-            z-index: 10;
-            pointer-events: none;
-        }
-        
-        .mushaf-border {
-            border: 1.5px solid #d4af37;
-            margin: 15px;
-            padding: 6px;
-        }
-        .mushaf-inner-border {
-            border: 3px double #b7950b;
-            padding: 40px 30px;
-            text-align: center;
-            min-height: 50vh;
-            position: relative;
-            background-image: radial-gradient(circle, transparent 20%, #fdf7e3 140%);
-        }
-        .top-actions {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-        .top-actions button {
-            background: #fdf7e3;
-            color: #725a07;
-            border: 1.5px solid #d4af37;
-            padding: 8px 18px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-family: 'Aref Ruqaa', serif;
-            font-size: 18px;
-            transition: 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        .top-actions button:hover {
-            background: #d4af37;
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(183, 149, 11, 0.3);
-        }
-
-        .surah-header {
+        .card {
+            background: rgba(253, 247, 227, 0.9);
             border: 2px solid #b7950b;
-            border-radius: 50px;
-            padding: 10px 60px;
-            display: inline-block;
-            margin-bottom: 30px;
-            background-color: rgba(183, 149, 11, 0.05);
-            box-shadow: inset 0 0 15px rgba(183, 149, 11, 0.2);
-            position: relative;
-        }
-        .surah-header::before, .surah-header::after {
-            content: "❁";
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #b7950b;
-            font-size: 28px;
-        }
-        .surah-header::before { right: 20px; }
-        .surah-header::after { left: 20px; }
-
-        .surah-header h1 {
-            color: #1a1a1a;
-            margin: 0;
-            font-size: 38px;
-            font-weight: normal;
-        }
-        .surah-header p {
-            margin: 5px 0 0 0;
-            color: #725a07;
-            font-family: 'Aref Ruqaa', serif;
-            font-size: 22px;
-        }
-        
-        #lyrics-container { 
-            font-size: 38px; 
-            line-height: 2.3; 
-            text-align: justify; 
-            text-align-last: center; 
-            direction: rtl;
-        }
-        
-        .verse { 
-            display: inline; 
-            color: #2c2c2c;
-            transition: color 0.5s ease; 
-        }
-        .verse.bismillah {
-            display: block;
+            border-radius: 12px;
+            padding: 15px;
             text-align: center;
-            font-size: 42px;
-            margin-bottom: 25px;
-            color: #8e7004;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
-        @keyframes quranGlow {
-            0% { text-shadow: 0 0 1px rgba(13, 92, 56, 0.05); }
-            50% { text-shadow: 0 0 5px rgba(13, 92, 56, 0.12); }
-            100% { text-shadow: 0 0 1px rgba(13, 92, 56, 0.05); }
-        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(183, 149, 11, 0.4); }
+        .card img { width: 100%; height: auto; border-radius: 8px; object-fit: contain; border: 1.5px solid #d4af37; margin-bottom: 10px; }
+        .card h3 { font-family: 'Aref Ruqaa', serif; color: #0d5c38; margin: 0; }
 
-        .verse.active {
-            color: #0d5c38; 
-            font-weight: bold;
-            animation: quranGlow 3s infinite ease-in-out;
-            background-color: rgba(212, 175, 55, 0.03); 
-            border-radius: 5px;
-        }
-        .verse.bismillah.active {
-            color: #0d5c38;
-            background: none;
-        }
+        .back-btn {
+            background: #d4af37; color: #fff; border: none; padding: 10px 20px; border-radius: 20px; font-family: 'Aref Ruqaa', serif; cursor: pointer; font-size: 18px; align-self: flex-start;
+        }    
+        .image-box img { width: 320px; max-width: 100%; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); border: 3px solid #b7950b; margin-bottom: 20px; }
+        .mushaf-container { background-color: #fdf7e3; width: 100%; min-width: 350px; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 80px rgba(183, 149, 11, 0.15), -8px 0 15px rgba(0,0,0,0.2); position: relative; margin-bottom: 80px;}
+        .mushaf-container::before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 40px; background: linear-gradient(to left, rgba(0,0,0,0.15) 0%, transparent 100%); z-index: 10; pointer-events: none; }
+        .mushaf-border { border: 1.5px solid #d4af37; margin: 15px; padding: 6px; }
+        .mushaf-inner-border { border: 3px double #b7950b; padding: 40px 30px; text-align: center; min-height: 50vh; position: relative; background-image: radial-gradient(circle, transparent 20%, #fdf7e3 140%); }
         
-        .aya-end-wrapper {
-            display: inline-flex;
-            position: relative;
-            justify-content: center;
-            align-items: center;
-            width: 45px; 
-            height: 45px; 
-            margin: 0 8px; 
-            vertical-align: middle;
-            padding-top: 2px;
-        }
-        
-        .aya-num {
-            font-size: 22px; 
-            color: #725a07; 
-            font-family: 'Amiri', serif;
-            opacity: 0;
-            animation: fadeInWord 0.5s forwards;
-        }
-        
-        @keyframes fadeInWord {
-            0% { opacity: 0; transform: translateY(5px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
+        .top-actions { display: flex; justify-content: center; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
+        .top-actions button { background: #fdf7e3; color: #725a07; border: 1.5px solid #d4af37; padding: 8px 18px; border-radius: 25px; cursor: pointer; font-family: 'Aref Ruqaa', serif; font-size: 18px; transition: 0.3s ease; }
+        .top-actions button:hover { background: #d4af37; color: #fff; transform: translateY(-2px); }
 
-        .aya-svg {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            transform: rotate(-90deg); 
-        }
-        .aya-svg circle {
-            fill: none;
-            stroke: #b7950b; 
-            stroke-width: 2.5;
-            stroke-linecap: round;
-            stroke-dasharray: 126;
-            stroke-dashoffset: 126; 
-        }
+        .surah-header { border: 2px solid #b7950b; border-radius: 50px; padding: 10px 60px; display: inline-block; margin-bottom: 30px; background-color: rgba(183, 149, 11, 0.05); position: relative; }
+        .surah-header h1 { color: #1a1a1a; margin: 0; font-size: 38px; font-weight: normal; }
+        .surah-header p { margin: 5px 0 0 0; color: #725a07; font-family: 'Aref Ruqaa', serif; font-size: 22px; }
+        
+        #lyrics-container { font-size: 38px; line-height: 2.3; text-align: justify; text-align-last: center; direction: rtl; }
+        .verse { display: inline; color: #2c2c2c; transition: color 0.5s ease; }
+        .verse.bismillah { display: block; text-align: center; font-size: 42px; margin-bottom: 25px; color: #8e7004; }
+        .verse.active { color: #0d5c38; font-weight: bold; background-color: rgba(212, 175, 55, 0.03); border-radius: 5px; }
+        
+        .aya-end-wrapper { display: inline-flex; position: relative; justify-content: center; align-items: center; width: 45px; height: 45px; margin: 0 8px; vertical-align: middle; padding-top: 2px; }
+        .aya-num { font-size: 22px; color: #725a07; font-family: 'Amiri', serif; }
+        .aya-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+        .aya-svg circle { fill: none; stroke: #b7950b; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 126; stroke-dashoffset: 0; }
 
-        .animate-circle .aya-svg circle {
-            animation: snakeCircle 1s forwards ease-in-out;
-            animation-delay: 0.2s;
-        }
-        
-        @keyframes snakeCircle {
-            to { stroke-dashoffset: 0; }
-        }
-        
-        .player-bar {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 500px;
-            background: rgba(15, 30, 22, 0.85);
-            backdrop-filter: blur(12px);
-            border: 1.5px solid #d4af37;
-            border-radius: 40px;
-            padding: 10px 15px;
-            display: flex;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 0 10px rgba(183, 149, 11, 0.1);
-            z-index: 1000;
-        }
-        audio { 
-            width: 100%; 
-            height: 40px;
-            outline: none;
-        }
-        audio::-webkit-media-controls-panel {
-            background-color: #fdf7e3;
-            border-radius: 30px;
-        }
-        
-        @media (max-width: 768px) {
-            #lyrics-container { font-size: 28px; line-height: 2.2; }
-            .verse.bismillah { font-size: 32px; }
-            .surah-header h1 { font-size: 28px; }
-            .player-bar { width: 95%; bottom: 15px; }
-            .top-actions button { font-size: 16px; padding: 6px 12px; }
-        }
+        .player-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 500px; background: rgba(15, 30, 22, 0.85); backdrop-filter: blur(12px); border: 1.5px solid #d4af37; border-radius: 40px; padding: 10px 15px; display: flex; justify-content: center; z-index: 1000; }
+        audio { width: 100%; height: 40px; outline: none; }
     </style>
 </head>
 <body>
 
-    <div class="main-wrapper">
-        <div class="image-box">
-            <img src="الناس.jpg" alt="الشيخ محمد اللحيدان">
-        </div>
+    <div id="reciters-view" class="view-section active">
+        <h1 style="color: #d4af37; font-family: 'Aref Ruqaa', serif; font-size: 40px;">القراء</h1>
+        <div class="grid-container" id="reciters-grid"></div>
+    </div>
+
+    <div id="surahs-view" class="view-section">
+        <button class="back-btn" onclick="showRecitersView()">رجوع للقراء</button>
+        <h1 id="selected-reciter-name" style="color: #d4af37; font-family: 'Aref Ruqaa', serif; font-size: 35px;"></h1>
+        <div class="grid-container" id="surahs-grid"></div>
+    </div>
+
+    <div id="player-view" class="view-section">
+        <button class="back-btn" onclick="showSurahsView()">رجوع للسور</button>
+        
 
         <div class="mushaf-container" id="mushaf-target">
             <div class="mushaf-border">
                 <div class="mushaf-inner-border">
-                    
                     <div class="top-actions" data-html2canvas-ignore="true">
                         <button onclick="downloadPDF()"> تحميل PDF</button>
                         <button onclick="downloadText()"> حفظ كنص</button>
                         <button onclick="copyText()"> نسخ السورة</button>
-                        <button onclick="downloadAudioDirect()"> تحميل الصوت</button>
                     </div>
 
                     <div class="surah-header">
-                        <h1>سُورَةُ النَّاسِ</h1>
-                        <p>بصوت الشيخ محمد اللحيدان</p>
+                        <h1 id="surah-title"></h1>
+                        <p id="surah-subtitle"></p>
                     </div>
                     
                     <div id="lyrics-container"></div>
                 </div>
             </div>
         </div>
+
+        <div class="player-bar">
+            <audio id="quran-audio" controls></audio>
+        </div>
     </div>
 
-    <div class="player-bar">
-        <audio id="quran-audio" controls src="https://server8.mp3quran.net/lhdan/114.mp3"></audio>
-    </div>
-
-    <script>
-        const currentVerses = [
-            { id: 0, start_time: 1.0, end_time: 3.0, text: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", type: "bismillah" },
-            { id: 1, start_time: 3.0, end_time: 7.0, text: "قُلْ أَعُوذُ بِرَبِّ النَّاسِ", type: "aya" },
-            { id: 2, start_time: 7.0, end_time: 10.0, text: "مَلِكِ النَّاسِ", type: "aya" },
-            { id: 3, start_time: 10.0, end_time: 14.0, text: "إِلَٰهِ النَّاسِ", type: "aya" },
-            { id: 4, start_time: 14.0, end_time: 20.0, text: "مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ", type: "aya" },
-            { id: 5, start_time: 20.0, end_time: 25.0, text: "الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ", type: "aya" },
-            { id: 6, start_time: 25.0, end_time: 31.0, text: "مِنَ الْجِنَّةِ وَالنَّاسِ", type: "aya" }
-        ];
-
-        const arabicNumbers = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
-        function toArabicNumber(num) {
-            return num.toString().split('').map(n => arabicNumbers[parseInt(n)]).join('');
-        }
-
-        const container = document.getElementById('lyrics-container');
-        const displayedVerses = new Set();
-
-        function typeVerse(verse) {
-            if (displayedVerses.has(verse.id)) return;
-            displayedVerses.add(verse.id);
-
-            const wrapper = document.createElement(verse.type === 'bismillah' ? 'div' : 'span');
-            wrapper.className = 'verse active ' + (verse.type === 'bismillah' ? 'bismillah' : 'aya');
-            wrapper.id = 'verse-' + verse.id;
-            container.appendChild(wrapper);
-
-            const chars = verse.text.split('');
-            let i = 0;
-            
-            const textNode = document.createTextNode('');
-            wrapper.appendChild(textNode);
-            
-            const durationMs = (verse.end_time - verse.start_time) * 750;
-            const typingSpeed = durationMs / chars.length; 
-
-            const interval = setInterval(() => {
-                if (i < chars.length) {
-                    textNode.textContent += chars[i];
-                    if(i % 15 === 0) wrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    
-                    i++;
-                } else {
-                    clearInterval(interval);
-                    if (verse.type === 'aya') {
-                        addAyaEnd(verse.id, wrapper);
-                    }
-                }
-            }, typingSpeed);
-        }
-
-        function addAyaEnd(id, wrapper) {
-            const endWrapper = document.createElement('span');
-            endWrapper.className = 'aya-end-wrapper animate-circle';
-            
-            endWrapper.innerHTML = `
-                <span class="aya-num">${toArabicNumber(id)}</span>
-                <svg class="aya-svg" viewBox="0 0 50 50">
-                    <circle cx="25" cy="25" r="20"></circle>
-                </svg>
-            `;
-            wrapper.appendChild(endWrapper);
-            wrapper.appendChild(document.createTextNode(" ")); 
-        }
-        document.getElementById('quran-audio').addEventListener('timeupdate', function() {
-            const currentTime = this.currentTime;
-            
-            currentVerses.forEach(verse => {
-                if (currentTime >= verse.start_time) {
-                    typeVerse(verse);
-                }
-                
-                if (currentTime >= verse.start_time && currentTime <= verse.end_time) {
-                    document.querySelectorAll('.verse').forEach(el => el.classList.remove('active'));
-                    const activeEl = document.getElementById('verse-' + verse.id);
-                    if (activeEl) {
-                        activeEl.classList.add('active');
-                    }
-                }
-            });
-        });
-        function downloadPDF() {
-            const element = document.getElementById('mushaf-target');
-            html2pdf(element, {
-                margin:       10,
-                filename:     'سورة_الناس.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2 },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            });
-        }
-
-        function copyText() {
-            const fullText = currentVerses.map(v => v.text).join(' ۝ ') + ' ۝';
-            navigator.clipboard.writeText(fullText).then(() => {
-                alert('تم نسخ السورة بنجاح!');
-            });
-        }
-
-        function downloadText() {
-            const fullText = currentVerses.map(v => v.text).join(' ۝ ') + ' ۝';
-            const blob = new Blob([fullText], { type: "text/plain;charset=utf-8" });
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = "سورة_الناس.txt";
-            link.click();
-        }
-
-        async function downloadAudioDirect() {
-            const audioSrc = document.getElementById('quran-audio').src;
-            try {
-                const response = await fetch(audioSrc);
-                const blob = await response.blob();
-                const link = document.createElement('a');
-                link.href = window.URL.createObjectURL(blob);
-                link.download = 'سورة_الناس_اللحيدان.mp3';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            } catch (error) {
-                const fallbackLink = document.createElement('a');
-                fallbackLink.href = audioSrc;
-                fallbackLink.download = 'سورة_الناس_اللحيدان.mp3';
-                fallbackLink.target = '_blank';
-                document.body.appendChild(fallbackLink);
-                fallbackLink.click();
-                document.body.removeChild(fallbackLink);
-            }
-        }
-    </script>
+    <script src="Data/cons.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
