@@ -68,7 +68,7 @@
         .mushaf-container { background-color: #fdf7e3; width: 100%; min-width: 350px; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 80px rgba(183, 149, 11, 0.15), -8px 0 15px rgba(0,0,0,0.2); position: relative; margin-bottom: 80px;}
         .mushaf-container::before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 40px; background: linear-gradient(to left, rgba(0,0,0,0.15) 0%, transparent 100%); z-index: 10; pointer-events: none; }
         .mushaf-border { border: 1.5px solid #d4af37; margin: 15px; padding: 6px; }
-        .mushaf-inner-border { border: 3px double #b7950b; padding: 40px 30px; text-align: center; min-height: 50vh; position: relative; background-image: radial-gradient(circle, transparent 20%, #fdf7e3 140%); }
+        .mushaf-inner-border { border: 3px double #b7950b; padding: 40px 30px; text-align: center; min-height: 50vh; position: relative; background: linear-gradient(135deg, #fcf6e1 0%, #f2e4bd 100%); box-shadow: inset 0 0 60px rgba(183, 149, 11, 0.08); border-radius: 4px; }
         
         .top-actions { display: flex; justify-content: center; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
         .top-actions button { background: #fdf7e3; color: #725a07; border: 1.5px solid #d4af37; padding: 8px 18px; border-radius: 25px; cursor: pointer; font-family: 'Aref Ruqaa', serif; font-size: 18px; transition: 0.3s ease; }
@@ -78,30 +78,84 @@
         .surah-header h1 { color: #1a1a1a; margin: 0; font-size: 38px; font-weight: normal; }
         .surah-header p { margin: 5px 0 0 0; color: #725a07; font-family: 'Aref Ruqaa', serif; font-size: 22px; }
         
-        #lyrics-container { font-size: 38px; line-height: 2.3; text-align: justify; text-align-last: center; direction: rtl; }
-        .verse { display: inline; color: #2c2c2c; transition: color 0.5s ease; }
-        .verse.bismillah { display: block; text-align: center; font-size: 42px; margin-bottom: 25px; color: #8e7004; }
-        .verse.active { color: #0d5c38; font-weight: bold; background-color: rgba(212, 175, 55, 0.03); border-radius: 5px; }
+        #lyrics-container { font-size: 38px; line-height: 2.3; text-align: justify; text-align-last: center; direction: rtl; padding: 10px; }
+        .verse { display: inline-block; color: #2c2c2c; transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; padding: 2px 6px; border-radius: 8px; will-change: transform, background-color; }
+        .verse.bismillah { display: block; text-align: center; font-size: 42px; margin-bottom: 25px; color: #8e7004; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+        .verse.active { color: #084c2d; background-color: rgba(212, 175, 55, 0.22); box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2); transform: scale(1.04) translateY(-2px); z-index: 2; position: relative; }
         
         .aya-end-wrapper { display: inline-flex; position: relative; justify-content: center; align-items: center; width: 45px; height: 45px; margin: 0 8px; vertical-align: middle; padding-top: 2px; }
         .aya-num { font-size: 22px; color: #725a07; font-family: 'Amiri', serif; }
         .aya-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
         .aya-svg circle { fill: none; stroke: #b7950b; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 126; stroke-dashoffset: 0; }
 
-        .player-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 500px; background: rgba(15, 30, 22, 0.85); backdrop-filter: blur(12px); border: 1.5px solid #d4af37; border-radius: 40px; padding: 10px 15px; display: flex; justify-content: center; z-index: 1000; }
-        audio { width: 100%; height: 40px; outline: none; }
+        .player-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 600px; background: rgba(15, 30, 22, 0.95); backdrop-filter: blur(12px); border: 1.5px solid #d4af37; border-radius: 40px; padding: 15px 25px; display: flex; align-items: center; gap: 15px; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); direction: ltr; }
+        audio { display: none; }
+        .player-controls { flex: 1; display: flex; align-items: center; gap: 10px; }
+        .time-text { color: #d4af37; font-family: 'Amiri', serif; font-size: 15px; min-width: 45px; text-align: center; }
+        #progress-bar { flex: 1; -webkit-appearance: none; appearance: none; height: 6px; background: rgba(212, 175, 55, 0.2); border-radius: 5px; outline: none; cursor: pointer; }
+        #progress-bar::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #d4af37; cursor: pointer; transition: 0.2s; box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+        #progress-bar::-webkit-slider-thumb:hover { transform: scale(1.2); }
+        .play-btn { background: #d4af37; color: #0f1e16; border: none; width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.3s ease; flex-shrink: 0; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); }
+        .play-btn:hover { background: #fdf7e3; transform: scale(1.05); }
+
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); justify-content: center; align-items: center; z-index: 2000; }
+        .modal-overlay.active { display: flex; animation: fadeIn 0.3s; }
+        .modal-card { background: #fdf7e3; border: 3px double #b7950b; border-radius: 20px; padding: 30px; text-align: center; max-width: 400px; width: 85%; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+        .modal-card h2 { color: #0d5c38; font-family: 'Aref Ruqaa', serif; font-size: 32px; margin: 0 0 20px 0; }
+        .modal-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .modal-btns button { background: #1b3628; color: #d4af37; border: 1.5px solid #d4af37; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-family: 'Aref Ruqaa', serif; font-size: 16px; transition: 0.3s; }
+        .modal-btns button:hover { background: #d4af37; color: #0f1e16; }
+    .section-title-box { background: rgba(15, 30, 22, 0.7); border: 1.5px solid #d4af37; padding: 12px 40px; border-radius: 30px; color: #d4af37; font-family: 'Aref Ruqaa', serif; font-size: 32px; margin: 0 auto 20px auto; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.4); backdrop-filter: blur(8px); display: inline-block; }
+        .search-container { width: 100%; max-width: 600px; margin: 0 auto 30px auto; position: relative; }
+        .search-input { width: 100%; padding: 15px 85px 15px 55px; border-radius: 30px; border: 2px solid #b7950b; background: rgba(253, 247, 227, 0.95); font-family: 'Amiri Quran', serif; font-size: 18px; color: #0d5c38; outline: none; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(0,0,0,0.3); box-sizing: border-box; }
+        .search-input::placeholder { color: #8e7004; opacity: 0.8; }
+        .search-input:focus { border-color: #d4af37; box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5); transform: translateY(-2px); }
+        .search-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: #b7950b; width: 24px; height: 24px; pointer-events: none; }
+        .search-actions { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; gap: 8px; }
+        .clear-btn, .mic-btn { background: none; border: none; color: #b7950b; cursor: pointer; font-size: 18px; padding: 5px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.2s ease; outline: none; }
+        .clear-btn:hover, .mic-btn:hover { color: #d4af37; background: rgba(183, 149, 11, 0.15); transform: scale(1.1); }
+        .mic-btn.listening { color: #e74c3c; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+        .no-results { grid-column: 1 / -1; text-align: center; color: #d4af37; padding: 40px 20px; font-family: 'Aref Ruqaa', serif; font-size: 24px; background: rgba(15, 30, 22, 0.5); border-radius: 15px; border: 1px dashed #b7950b; }
+        .no-results svg { width: 60px; height: 60px; margin-bottom: 10px; opacity: 0.8; color: #d4af37; }
     </style>
 </head>
 <body>
 
     <div id="reciters-view" class="view-section active">
-        <h1 style="color: #d4af37; font-family: 'Aref Ruqaa', serif; font-size: 40px;">القراء</h1>
+        <div style="text-align: center; margin-bottom: 20px; background: rgba(253, 247, 227, 0.05); padding: 35px 20px; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.3); width: 100%; box-sizing: border-box;">
+            <svg viewBox="0 0 24 24" width="40" height="40" style="color: #d4af37; margin-bottom: 10px;"><path fill="currentColor" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <h1 style="color: #d4af37; font-family: 'Aref Ruqaa', serif; font-size: 45px; margin: 0 0 10px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);"> القرآن الكريم</h1>
+            <p style="color: #fdf7e3; font-family: 'Amiri Quran', serif; font-size: 22px; margin: 0; opacity: 0.9;">استمع واقرأ وتدبر آيات الله بصوت نخبة من القراء والمشايخ</p>
+        </div>
+        
+        <h2 class="section-title-box">اختر القارئ</h2>
+        <div class="search-container">
+            <svg class="search-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" id="reciter-search" class="search-input" placeholder="ابحث عن قارئ (مثال: عبدالباسط)...">
+            <div class="search-actions">
+                <button type="button" id="reciter-clear" class="clear-btn" title="مسح البحث" style="display:none;">✕</button>
+                <button type="button" id="reciter-mic" class="mic-btn" title="بحث صوتي">
+                    <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path fill="currentColor" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+                </button>
+            </div>
+        </div>
         <div class="grid-container" id="reciters-grid"></div>
     </div>
 
     <div id="surahs-view" class="view-section">
         <button class="back-btn" onclick="showRecitersView()">رجوع للقراء</button>
-        <h1 id="selected-reciter-name" style="color: #d4af37; font-family: 'Aref Ruqaa', serif; font-size: 35px;"></h1>
+        <h1 id="selected-reciter-name" class="section-title-box"></h1>
+        <div class="search-container">
+            <svg class="search-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" id="surah-search" class="search-input" placeholder="ابحث عن سورة (مثال: الكهف)...">
+            <div class="search-actions">
+                <button type="button" id="surah-clear" class="clear-btn" title="مسح البحث" style="display:none;">✕</button>
+                <button type="button" id="surah-mic" class="mic-btn" title="بحث صوتي">
+                    <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path fill="currentColor" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+                </button>
+            </div>
+        </div>
         <div class="grid-container" id="surahs-grid"></div>
     </div>
 
@@ -129,9 +183,30 @@
         </div>
 
         <div class="player-bar">
-            <audio id="quran-audio" controls></audio>
+            <audio id="quran-audio"></audio>
+            <button id="play-pause-btn" class="play-btn">
+                <svg id="play-icon" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+                <svg id="pause-icon" viewBox="0 0 24 24" width="24" height="24" style="display:none;"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            </button>
+            <div class="player-controls">
+                <span id="current-time" class="time-text">0:00</span>
+                <input type="range" id="progress-bar" value="0" max="100">
+                <span id="total-time" class="time-text">0:00</span>
+            </div>
         </div>
     </div>
+
+    <div id="completion-modal" class="modal-overlay">
+        <div class="modal-card">
+            <h2>صدق الله العظيم</h2>
+            <div class="modal-btns">
+                <button onclick="hideCompletionModal()">البقاء في صفحة السورة</button>
+                <button onclick="showSurahsView()">العودة للقائمة</button>
+            </div>
+        </div>
+    </div>
+
+
 
     <script src="Data/cons.js"></script>
     <script src="main.js"></script>
