@@ -6,6 +6,20 @@ const database = [
         image: "Data/محمد اللحيدان/shiekh.png", 
         surahs: [
             {
+                id: "azzalzalah",
+                name: "سورة الزلزلة",
+                audioUrl: "https://server8.mp3quran.net/lhdan/099.mp3",
+                jsFile: "Data/محمد اللحيدان/الزلزلة/الزلزلة.js",
+                image: "Data/محمد اللحيدان/الزلزلة/الزلزلة.png"
+            },
+            {
+                id: "aladiyat",
+                name: "سورة العاديات",
+                audioUrl: "https://server8.mp3quran.net/lhdan/100.mp3",
+                jsFile: "Data/محمد اللحيدان/العاديات/العاديات.js",
+                image: "Data/محمد اللحيدان/العاديات/العاديات.png"
+            },
+            {
                 id: "alqariah",
                 name: "سورة القارعة",
                 audioUrl: "https://server8.mp3quran.net/lhdan/101.mp3",
